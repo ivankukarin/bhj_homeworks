@@ -1,7 +1,7 @@
 const catchMole = () => {
   let dead = document.getElementById('dead');
   let lost = document.getElementById('lost');
-  const
+  
   const startPosition = () => {
     dead.textContent = 0;
     lost.textContent = 0;
@@ -27,10 +27,7 @@ const catchMole = () => {
       }
     };
     el.addEventListener('click', checkMole)
-    
   }
-  
-
 };
 
 catchMole();
