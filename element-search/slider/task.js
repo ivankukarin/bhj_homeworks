@@ -19,7 +19,7 @@ function hasClassActive (element){
       index = -1;
       }; 
     arr[index+1].classList.add('slider__item_active');
-    console.log(index);
+    
   })
 
   
