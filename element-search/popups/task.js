@@ -8,7 +8,10 @@ btnModalCloseModalMain.addEventListener('click', removeModalMain );
 
 let btnShowSuccess = document.querySelector('.show-success');
 let modalSuccess = document.querySelector('#modal_success');
-const addModalMain = ()=>  modalSuccess.classList.add('modal_active');
+const addModalMain = ()=>  {
+  modalSuccess.classList.add('modal_active');
+  modalMain.classList.remove('modal_active');
+}
 btnShowSuccess.addEventListener('click', addModalMain);
 
 let btnModalCloseModalSuccess = document.querySelector('#modal_success .modal__close');
