@@ -14,7 +14,6 @@ function hasClassActive (element){
     
     arr[index].classList.remove('slider__item_active');
    
-   /// Вопрос: Почему в коде ниже вместо 4 я не могу поставить arr.length, хотя тип тоже числовой, значение совпадает?
     if (index === (arr.length - 1)) {
       index = -1;
       }; 
