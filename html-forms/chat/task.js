@@ -2,7 +2,6 @@ let btnChatWidget = document.querySelector('.chat-widget');
 let chatInput = document.querySelector('input.chat-widget__input');
 let newMessage 
 btnChatWidget.addEventListener('click', function(){
-  
   this.classList.add('chat-widget_active');
 });
 
@@ -21,8 +20,6 @@ const time = function(){
   let mm = doTwoNumber(minutes);
   return `${hh}:${mm}`;
 }
-
-
 
 chatInput.addEventListener('keydown', function(evt){
   if (evt.code === 'Enter') {
@@ -52,11 +49,9 @@ chatInput.addEventListener('keydown', function(evt){
         'К сожалению все операторы заняты. Не пишите нам больше.',
         ];
       let index = Math.floor(Math.random() * words.length);
-
+      
       return words[index];
     }
-
-    console.log(getPhrase());
 
     addMessage( messageTextClient, client,);
     setTimeout(()=>{addMessage(getPhrase())}, 800);
