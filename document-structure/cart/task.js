@@ -1,5 +1,5 @@
 class Product {
-  /// data-id=1
+  
   constructor(container) {
     this.container = container;
     this.id = this.container.dataset.id;
@@ -12,7 +12,7 @@ class Product {
     this.buttonDecrease = container.querySelector(
       ".product__quantity-control_dec"
     );
-    // this.cart = document.querySelector(".cart__products");
+    
     this.buttonAddProduct = container.querySelector(".product__add");
 
     this.decrease();
@@ -38,23 +38,28 @@ class Product {
   addToCart() {
     this.buttonAddProduct.addEventListener("click", () => {
       let cart = document.querySelector(".cart__products");
-      console.log(cart);
-      if (!cart.includes(child => child.getAttribute("data-id") == this.id)) {
-        console.log("Нет такого в корзине, сейчас добавим");
+      let currentProduct = cart.querySelector(`[data-id='${this.id}']`);
 
-        cart.insertAdjacentHTML(
-          "beforeEnd",
-          `<div class="cart__product" data-id="${this.id}"><img class ="cart__product-image" src="${this.imgProduct.src}"><div class="cart__product-count">${this.quantityProduct.textContent}</div></div>`
-        );
+      if (!currentProduct) {
+        let product = document.createElement("div");
+        product.classList.add("cart__product");
+        product.dataset.id = this.id;
+
+        let image = document.createElement("img");
+        image.classList.add("cart__product-image");
+        image.src = this.imgProduct.src;
+        product.append(image);
+
+        let count = document.createElement("div");
+        count.classList.add("cart__product-count");
+        count.textContent = this.quantityProduct.textContent;
+        product.append(count);
+        cart.append(product);
       } else {
-        let productInCart = cart.find(
-          child => child.getAttribute("data-id") == this.id
-        );
-        let productInCartCount = productInCart.querySelector(
-          ".cart__product-count"
-        );
-        productInCartCount.textContent =
-          productInCartCount.textContent + this.quantityProduct.textContent;
+        console.log(currentProduct.textContent);
+        console.log(this.quantityProduct.textContent);
+        
+        currentProduct.querySelector('.cart__product-count').textContent = Number(currentProduct.querySelector('.cart__product-count').textContent) + Number(this.quantityProduct.textContent);
       }
     });
   }
@@ -62,4 +67,4 @@ class Product {
 
 new Product(document.querySelector('[data-id = "1"]'));
 new Product(document.querySelector('[data-id = "2"]'));
-// console.log(document.querySelector('[data-id = "1"]'));
+
