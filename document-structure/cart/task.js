@@ -36,22 +36,26 @@ class Product {
   }
 
   addToCart() {
-    let cart = document.querySelector(".cart__products");
-
     this.buttonAddProduct.addEventListener("click", () => {
-      for (let child of cart.children) {
-        if (child.getAttribute('data-id') == this.id) {
-          child.setAttribute('data-id')
-        }
-      }
+      let cart = document.querySelector(".cart__products");
+      console.log(cart);
+      if (!cart.includes(child => child.getAttribute("data-id") == this.id)) {
+        console.log("Нет такого в корзине, сейчас добавим");
+
         cart.insertAdjacentHTML(
           "beforeEnd",
           `<div class="cart__product" data-id="${this.id}"><img class ="cart__product-image" src="${this.imgProduct.src}"><div class="cart__product-count">${this.quantityProduct.textContent}</div></div>`
         );
-        console.log(
-          cart.children
+      } else {
+        let productInCart = cart.find(
+          child => child.getAttribute("data-id") == this.id
         );
-      
+        let productInCartCount = productInCart.querySelector(
+          ".cart__product-count"
+        );
+        productInCartCount.textContent =
+          productInCartCount.textContent + this.quantityProduct.textContent;
+      }
     });
   }
 }
