@@ -9,7 +9,7 @@ const setParametres = elem => {
 };
 
 const showElement = elem => {
-  elem.classList.toggle("tooltip_active");
+  elem.classList.add("tooltip_active");
 };
 
 const addTooltip = elem => {
@@ -20,8 +20,18 @@ const addTooltip = elem => {
   elem.addEventListener("click", event => {
     event.preventDefault();
     setParametres(child);
+    hideAllTooltips();
     showElement(child);
   });
+};
+
+const hideAllTooltips = () => {
+  let allTooltips = document.getElementsByClassName("tooltip");
+  for (let tooltip of allTooltips) {
+    if (tooltip.classList.contains("tooltip_active")) {
+      tooltip.classList.remove("tooltip_active");
+    }
+  }
 };
 
 for (let el of allElemsHasTooltip) {
