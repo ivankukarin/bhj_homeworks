@@ -8,8 +8,8 @@ const setParametres = elem => {
   elem.style.left = coordinatesParent.left + "px";
 };
 
-const showElement = elem => {
-  elem.classList.add("tooltip_active");
+const toggleShowElement = elem => {
+  elem.classList.toggle("tooltip_active");
 };
 
 const addTooltip = elem => {
@@ -18,10 +18,12 @@ const addTooltip = elem => {
   elem.appendChild(child);
 
   elem.addEventListener("click", event => {
-    event.preventDefault();
+    event.preventDefault();    
     setParametres(child);
-    hideAllTooltips();
-    showElement(child);
+    if (!child.classList.contains("tooltip_active")) {
+      hideAllTooltips();
+    };
+    toggleShowElement(child);
   });
 };
 
