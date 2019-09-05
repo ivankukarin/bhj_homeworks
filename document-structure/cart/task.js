@@ -15,10 +15,10 @@ class Product {
     this.buttonAddProduct = container.querySelector(".product__add");
 
     this.buttonDecrease.addEventListener("click", () => {
-      this.decrease(this.quantityProduct);
+      this.decrease();
     });
     this.buttonIncrease.addEventListener("click", () => {
-      this.increase(this.quantityProduct);
+      this.increase();
     });
 
     this.buttonAddProduct.addEventListener("click", () => {
@@ -26,15 +26,15 @@ class Product {
     });
   }
 
-  decrease(el) {
-    el.textContent--;
-    if (el.textContent == 0) {
-      el.textContent = 1;
+  decrease() {
+    this.quantityProduct.textContent--;
+    if (this.quantityProduct.textContent == 0) {
+      this.quantityProduct.textContent = 1;
     }
   }
 
-  increase(el) {
-    el.textContent++;
+  increase() {
+    this.quantityProduct.textContent++;
   }
 
   addToCart() {
