@@ -4,6 +4,7 @@ let buttonSend = document.getElementById("send");
 function uploadFile(e) {
   e.preventDefault();
 
+  let timeStart = new Date();
   let formInputFile = document.querySelector('input[name="file"]');
   let file = formInputFile.files[0];
 
@@ -22,6 +23,12 @@ function uploadFile(e) {
 
   xhr.onreadystatechange = function() {
     console.log(xhr.readyState);
+    if (xhr.readyState == 4){
+      let timeEnd = new Date();
+      let timer = timeEnd - timeStart;
+      console.log(`Время на запрос потрачено ${timer/1000} секунд.`);
+    }
+
   };
 
   xhr.open("POST", "https://netology-slow-rest.herokuapp.com/upload.php");
